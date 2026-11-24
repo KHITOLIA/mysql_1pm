@@ -1,0 +1,68 @@
+USE tb;
+
+SHOW TABLES;
+
+
+# ADD COLUMNS
+# DELETE COLUMNS
+# MODIFY COLUMNS
+
+# ADDING COLUMN INTO EXISTING TABLE
+
+CREATE TABLE IF NOT EXISTS customers(
+c_id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(255) );
+
+
+ALTER TABLE customers ADD COLUMN password VARCHAR(255) NOT NULL ;
+
+# ADD MULTIPLE COL EMAIL AND LOCATION COLUMN
+
+ALTER TABLE customers
+ADD COLUMN email VARCHAR(255) UNIQUE NOT NULL,
+ADD COLUMN location VARCHAR(255) UNIQUE NOT NULL;
+
+# ADDING AT ANY SPECIFIC LOCATION 
+
+ALTER TABLE customers
+ADD COLUMN age INT;
+
+# DELETE COL
+
+ALTER TABLE customers
+DROP COLUMN name;
+
+
+ ALTER TABLE customers
+DROP COLUMN age,
+DROP COLUMN password;
+
+DROP TABLE IF EXISTS customers;
+
+
+# add constraint or delete constraint
+
+
+
+ALTER TABLE customers
+ADD COLUMN age INT;
+
+
+ALTER TABLE customers
+ADD CONSTRAINT customers_age_check CHECK (age > 13);
+
+
+SELECT TABLE_NAME, CONSTRAINT_TYPE, CONSTRAINT_NAME
+FROM information_schema.table_constraints
+WHERE table_name='customers';
+
+
+
+ALTER TABLE customers 
+DROP CONSTRAINT customers_age_check;
+
+
+
+
+
+
